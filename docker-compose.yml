@@ -1,0 +1,30 @@
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+
+  api:
+    build: ./backend
+    environment:
+      DATABASE_URL: "postgres://postgres:postgres@postgres:5432/imagehost?sslmode=disable"
+      STORAGE_PATH: "./uploads"
+      BASE_URL: "http://localhost:80"
+    volumes:
+      - ./uploads:/app/uploads
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: imagehost
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
