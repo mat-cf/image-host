@@ -35,6 +35,7 @@ The Vite dev server proxies `/upload` and `/uploads/` to the Go backend automati
 - Git
  
 **Steps:**
+Change the `docker-compose.yml` baseURL field first
  
 ```bash
 git clone https://github.com/your-username/image-host /opt/services/image-host
