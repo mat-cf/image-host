@@ -2,16 +2,19 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "80:80"
+      - "8081:80"
     depends_on:
       - api
 
   api:
     build: ./backend
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
     environment:
       DATABASE_URL: "postgres://postgres:postgres@postgres:5432/imagehost?sslmode=disable"
       STORAGE_PATH: "./uploads"
-      BASE_URL: "http://localhost:80"
+      BASE_URL: "your_ip_here:port"
     volumes:
       - ./uploads:/app/uploads
     depends_on:
