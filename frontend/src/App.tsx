@@ -44,7 +44,7 @@ export default function App() {
     <div onPaste={onPaste} onDrop={onDrop} onDragOver={onDragOver}>
       <p>paste, drop or select an image</p>
       <input type="file" accept="image/*" onChange={onChange} />
-      {url && <p>{url}</p>}
+      {url && <p>http://{url}</p>}
       {error && <p>{error}</p>}
     </div>
   );
